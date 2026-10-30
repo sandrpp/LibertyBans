@@ -88,7 +88,6 @@ Compatibility with Geyser/Floodgate usernames and China Edition. Platform forks 
 Mostly there are **no dependencies**, except for these platforms:
 
 * Velocity: because of 1.19+ chat signing, installing LibertyBans on a Velocity proxy requires [SignedVelocity](https://modrinth.com/plugin/signedvelocity) for mutes to work. SignedVelocity must be installed on the proxy and backend servers.
-* Fabric: requires [adventure-platform-mod](https://modrinth.com/mod/adventure-platform-mod) to be installed separately.
 
 ### Installation
 

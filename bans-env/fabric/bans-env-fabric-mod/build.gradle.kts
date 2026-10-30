@@ -27,4 +27,46 @@ sourceSets {
 
 dependencies {
     implementation("org.libertybans:bans-bootstrap:${project.version}")
+
+    // Bundle adventure as nested jars, so that adventure-platform-mod is not required
+    include("net.kyori:adventure-api:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-key:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:option:1.1.0") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-text-serializer-json:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-text-serializer-gson:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-text-serializer-commons:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-text-serializer-legacy:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
+    include("net.kyori:adventure-text-serializer-plain:${project.findProperty("adventure_version")}") {
+        exclude(group = "org.jetbrains")
+        exclude(group = "com.google.code.gson")
+        exclude(group = "com.google.auto.service")
+    }
 }

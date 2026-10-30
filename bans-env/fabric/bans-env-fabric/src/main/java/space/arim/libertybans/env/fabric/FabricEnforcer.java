@@ -25,7 +25,6 @@ import net.kyori.adventure.text.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
-import space.arim.api.env.AudienceRepresenter;
 import space.arim.libertybans.core.config.InternalFormatter;
 import space.arim.libertybans.core.env.AbstractEnvEnforcer;
 import space.arim.libertybans.core.env.Interlocutor;
@@ -45,15 +44,13 @@ public final class FabricEnforcer extends AbstractEnvEnforcer<ServerPlayer> {
 
     private final ServerProvide serverProvide;
     private final FabricUserResolver userResolver;
-    private final ServerAudiences serverAudiences;
 
     @Inject
     public FabricEnforcer(FactoryOfTheFuture futuresFactory, InternalFormatter formatter, Interlocutor interlocutor,
-                          ServerProvide serverProvide, FabricUserResolver userResolver, ServerAudiences serverAudiences) {
-        super(futuresFactory, formatter, interlocutor, AudienceRepresenter.identity());
+                          ServerProvide serverProvide, FabricUserResolver userResolver) {
+        super(futuresFactory, formatter, interlocutor, MinecraftAudiences::audience);
         this.serverProvide = serverProvide;
         this.userResolver = userResolver;
-        this.serverAudiences = serverAudiences;
     }
 
     @SuppressWarnings("unchecked")
@@ -125,6 +122,6 @@ public final class FabricEnforcer extends AbstractEnvEnforcer<ServerPlayer> {
 
     @Override
     public void kickPlayer(ServerPlayer player, Component message) {
-        player.connection.disconnect(serverAudiences.getServerAudiences().asNative(message));
+        player.connection.disconnect(MinecraftAudiences.asNative(message));
     }
 }

@@ -73,7 +73,7 @@ public final class ChatListener extends FabricListener implements ServerMessageE
         if (message == null) {
             return true;
         }
-        player.sendMessage(message);
+        MinecraftAudiences.audience(player).sendMessage(message);
         return false;
     }
 

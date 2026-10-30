@@ -12,9 +12,8 @@
   },
   "depends": {
     "fabricloader": ">=${fabric.loader_version}",
-    "minecraft": "${fabric.minecraft_version}",
+    "minecraft": "~${fabric.minecraft_version}-",
     "java": ">=25",
-    "adventure-platform-fabric": "${fabric.adventure_platform_version}",
     "fabric-api": "*"
   },
   "environment": "*",

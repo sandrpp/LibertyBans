@@ -44,7 +44,6 @@ public final class FabricPlatformAccess implements PlatformAccess {
 
     private final CommandHandler.Factory commandFactory;
     private final Guardian guardian;
-    private final ServerAudiences serverAudiences;
     private final ChatListener chatListener;
     private final ServerProvide serverProvide;
 
@@ -52,10 +51,9 @@ public final class FabricPlatformAccess implements PlatformAccess {
 
     @Inject
     public FabricPlatformAccess(CommandHandler.Factory commandFactory, Guardian guardian,
-                                ServerAudiences serverAudiences, ChatListener chatListener, ServerProvide serverProvide) {
+                                ChatListener chatListener, ServerProvide serverProvide) {
         this.commandFactory = commandFactory;
         this.guardian = guardian;
-        this.serverAudiences = serverAudiences;
         this.chatListener = chatListener;
         this.serverProvide = serverProvide;
     }
@@ -95,7 +93,7 @@ public final class FabricPlatformAccess implements PlatformAccess {
     }
 
     private Component checkConnection(UUID uuid, InetAddress address, String name) {
-        net.kyori.adventure.text.Component denial = guardian
+        var denial = guardian
                 .executeAndCheckConnection(uuid, name, address)
                 // Minecraft itself will time the player out after 30 seconds of logging in
                 .orTimeout(25L, TimeUnit.SECONDS)
@@ -103,7 +101,7 @@ public final class FabricPlatformAccess implements PlatformAccess {
         if (denial == null) {
             return null;
         }
-        return serverAudiences.getServerAudiences().asNative(denial);
+        return MinecraftAudiences.asNative(denial);
     }
 
     @Override

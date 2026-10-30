@@ -25,7 +25,6 @@ import net.minecraft.server.permissions.Permission;
 import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.server.permissions.PermissionSet;
 import net.minecraft.world.entity.player.Player;
-import space.arim.api.env.AudienceRepresenter;
 import space.arim.libertybans.api.Operator;
 import space.arim.libertybans.core.config.InternalFormatter;
 import space.arim.libertybans.core.env.AbstractCmdSender;
@@ -39,7 +38,7 @@ final class FabricCmdSender extends AbstractCmdSender<CommandSourceStack> {
 
     FabricCmdSender(InternalFormatter formatter, Interlocutor interlocutor,
                     CommandSourceStack sender, Operator operator, MinecraftServer server) {
-        super(formatter, interlocutor, AudienceRepresenter.identity(), sender, operator);
+        super(formatter, interlocutor, MinecraftAudiences::audience, sender, operator);
         this.server = server;
     }
 

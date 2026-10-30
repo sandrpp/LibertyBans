@@ -34,7 +34,6 @@ import java.util.Set;
 public final class FabricEnv implements Environment {
 
     private final Configs configs;
-    private final ServerAudiences serverAudiences;
     private final TaskQueueLifecycle taskQueueLifecycle;
     private final FabricMessageChannel messageChannel;
     private final ChatListener chatListener;
@@ -44,11 +43,10 @@ public final class FabricEnv implements Environment {
     private final PlatformAccess platformAccess;
 
     @Inject
-    public FabricEnv(Configs configs, ServerAudiences serverAudiences, TaskQueueLifecycle taskQueueLifecycle,
+    public FabricEnv(Configs configs, TaskQueueLifecycle taskQueueLifecycle,
                      FabricMessageChannel messageChannel, ChatListener chatListener, JoinListener joinListener,
                      CommandHandler.Factory commandFactory, ServerProvide serverProvide, PlatformAccess platformAccess) {
         this.configs = configs;
-        this.serverAudiences = serverAudiences;
         this.taskQueueLifecycle = taskQueueLifecycle;
         this.messageChannel = messageChannel;
         this.chatListener = chatListener;
@@ -60,7 +58,7 @@ public final class FabricEnv implements Environment {
 
     @Override
     public Set<PlatformListener> createListeners(AliasCommand.RegisterOutcome registerRootCommand) {
-        return Set.of(serverAudiences, taskQueueLifecycle, messageChannel, chatListener, joinListener);
+        return Set.of(taskQueueLifecycle, messageChannel, chatListener, joinListener);
     }
 
     @Override
